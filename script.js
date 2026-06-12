@@ -166,15 +166,14 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 })();
 
 /* ============================================================
-   GOOGLE ADS — CONVERSÃO WHATSAPP (AW-10785251197)
+   GOOGLE ADS — CONVERSÃO WHATSAPP (AW-10785251197/J-kYCJiEwb0cEP2-55Yo)
+   Os botões têm target="_blank", por isso chamamos sem URL:
+   a aba do WhatsApp abre normalmente e o evento dispara.
 ============================================================ */
 document.querySelectorAll('a[href*="whatsapp.com"]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    if (typeof gtag !== 'function') return;
-    gtag('event', 'conversion', {
-      send_to: 'AW-10785251197',
-      event_category: 'whatsapp',
-      event_label: btn.dataset.cta || 'geral'
-    });
+  btn.addEventListener('click', function () {
+    if (typeof gtag_report_conversion === 'function') {
+      gtag_report_conversion();
+    }
   });
 });
