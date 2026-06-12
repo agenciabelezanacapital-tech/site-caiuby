@@ -166,23 +166,15 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 })();
 
 /* ============================================================
-   GOOGLE ADS CONVERSION TRACKING HELPER
-   Uncomment and configure when GTM / gTag is set up
+   GOOGLE ADS — CONVERSÃO WHATSAPP (AW-10785251197)
 ============================================================ */
-/*
-const WA_CONVERSION_LABEL = 'REPLACE_WITH_LABEL'; // e.g. 'AbCdEfGhIjKlMnOp'
-const WA_CONVERSION_ID    = 'AW-XXXXXXXXX';        // e.g. 'AW-123456789'
-
-function trackWAConversion(ctaLocation) {
-  if (typeof gtag === 'undefined') return;
-  gtag('event', 'conversion', {
-    send_to: `${WA_CONVERSION_ID}/${WA_CONVERSION_LABEL}`
+document.querySelectorAll('a[href*="whatsapp.com"]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'conversion', {
+      send_to: 'AW-10785251197',
+      event_category: 'whatsapp',
+      event_label: btn.dataset.cta || 'geral'
+    });
   });
-  // Optional: send custom event for GA4
-  gtag('event', 'whatsapp_click', { cta_location: ctaLocation });
-}
-
-document.querySelectorAll('[data-cta]').forEach(el => {
-  el.addEventListener('click', () => trackWAConversion(el.dataset.cta));
 });
-*/
